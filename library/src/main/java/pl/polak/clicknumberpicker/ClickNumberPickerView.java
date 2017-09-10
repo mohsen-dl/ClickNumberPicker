@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.percent.PercentRelativeLayout;
@@ -283,6 +284,7 @@ public class ClickNumberPickerView extends PercentRelativeLayout {
         flRightPicker = (FrameLayout) view.findViewById(R.id.fl_click_numberpicker_right);
         rlCenter = (RelativeLayout) view.findViewById(R.id.center_picker);
         tvValue = (TextView) view.findViewById(R.id.tv_value_numberpicker);
+        tvValue.setTypeface(GetTypeFace("IRANSansWeb(FaNum)_Medium.ttf"));
 
         View leftPickerView = inflate(getContext(), leftPickerLayout, null);
         flLeftPicker.addView(leftPickerView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
@@ -313,6 +315,11 @@ public class ClickNumberPickerView extends PercentRelativeLayout {
         valueUpChangeAnimator.setDuration(animationUpDuration);
         valueUpChangeAnimator.setRepeatCount(1);
         valueUpChangeAnimator.setRepeatMode(ValueAnimator.REVERSE);
+    }
+
+    private Typeface GetTypeFace(String fontName){
+        Typeface face = Typeface.createFromAsset(getContext().getAssets(), "fonts/" + fontName);
+        return face;
     }
 
     private String formatValue(float value) {
